@@ -1,4 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const loc = require('.././loc.js');
+const format = require ('string-format');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -10,15 +12,15 @@ module.exports = {
 				.setRequired(true)),
 	async execute(interaction)
 	{
-		const target = interaction.options.getMember('user');
-		const user = interaction.user;
-		if (target.user == interaction.client.user)
+		const args = { target: interaction.options.getMember('user'), author: interaction.user };
+		format.extend (String.prototype, {});
+		if (args.target.user == interaction.client.user)
 		{
-			await interaction.reply(`${target} slaps ${user} around a bit with a large trout instead.`);
+			await interaction.reply(loc.getTL('slapMeeku').format(args));
 		}
 		else
 		{
-			await interaction.reply(`${user} slaps ${target} around a bit with a large trout.`);
+			await interaction.reply(loc.getTL(`slap`).format(args));
 		}
 	},
 };
