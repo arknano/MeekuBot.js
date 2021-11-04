@@ -4,6 +4,7 @@ const format = require ('string-format');
 const SpotifyWebApi = require('spotify-web-api-node');
 const sqlite3 = require('sqlite3').verbose();
 const { MessageEmbed } = require('discord.js');
+const { spotifyClientID, spotifyClientSecret } = require('.././config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -38,8 +39,8 @@ module.exports = {
 		const userId = interaction.user.id;
 		const token = interaction.options.getString('token');
 		const spotifyApi = new SpotifyWebApi({
-			clientId: '9566f41fae67442193a089505287ae2d',
-			clientSecret: '219f35a43cda4bbaaab719b92904e1dc',
+			clientId: spotifyClientID,
+			clientSecret: spotifyClientSecret,
 		});
 		spotifyApi.setAccessToken(token);
 		const albumIds = [];
