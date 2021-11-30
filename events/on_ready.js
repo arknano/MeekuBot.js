@@ -8,6 +8,9 @@ module.exports = {
 	{
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 		const channel = await client.guilds.cache.get(guildId).channels.fetch(devChannel);
-		channel.send(loc.getTL('botOnline'));
+		// channel.send(loc.getTL('botOnline'));
+		client.user.setActivity(loc.getTL('status'), {
+			type: 'PLAYING',
+		});
 	},
 };

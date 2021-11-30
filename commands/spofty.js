@@ -46,7 +46,7 @@ module.exports = {
 		if (albumIds.length == 0 && trackIds.length == 0)
 		{
 			interaction.editReply('User not found in database. Have you run /updatespofty before?');
-			return;
+			// return;
 		}
 		spotifyApi.clientCredentialsGrant()
 			.then(function(result)
